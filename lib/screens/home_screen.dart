@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:recipebook/models/recipe.dart';
+import 'package:recipebook/screens/recipe_detail_screen.dart';
 import 'package:recipebook/utils/dbHelper.dart';
 
 class MyHomePage extends StatefulWidget {
+  final List<Recipe> recipes;
+  MyHomePage({Key key, @required this.recipes}) : super(key: key);
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   DatabaseHelper _databaseHelper = DatabaseHelper();
-  List<Recipe> allRecipes = List.empty();
-  int clickedRecipeID;
-
+  List<Recipe> allRecipes;
+  int clickedRecipeIDasd;
   void getRecipes() async {
     var recipesFuture = _databaseHelper.getAllRecipes();
     await recipesFuture.then((data) {
@@ -45,26 +47,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   Expanded(
                     child: ListView.builder(
                         itemCount: allRecipes.length,
-                        itemBuilder: (context, index) {
+                        itemBuilder: (context, position) {
                           return Card(
                             child: ListTile(
                               onTap: () {
-                                setState(() {
-                                  // _controllerTitle.text = allRecipes[index].title;
-                                  // _controllerDesc.text =
-                                  //     allRecipes[index].description;
-                                  clickedRecipeID = allRecipes[index].recipeId;
-                                  Navigator.pushNamed(
-                                      context, "/recipe_detail");
-                                });
+                                navigateToDetail(this.allRecipes[position]);
                               },
-                              title: Text(allRecipes[index].recipeTitle),
+                              title: Text(allRecipes[position].recipeTitle),
                               subtitle:
-                                  Text(allRecipes[index].recipeDescription),
+                                  Text(allRecipes[position].recipeDescription),
                               trailing: GestureDetector(
                                 onTap: () {
                                   _deleteRecipe(
-                                      allRecipes[index].recipeId, index);
+                                      allRecipes[position].recipeId, position);
                                 },
                                 child: Icon(Icons.delete),
                               ),
@@ -92,5 +87,24 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       getRecipes();
     });
+  }
+
+  void navigateToDetail(Recipe detailRecipe) async {
+    bool result = await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => RecipeDetailScreen(detailRecipe)));
+    if (result == true) {
+      getData();
+    }
+  }
+
+  void getData() {
+    final todosFuture = _databaseHelper.getAllRecipes();
+    todosFuture.then((result) => {
+          setState(() {
+            allRecipes = result;
+          })
+        });
   }
 }

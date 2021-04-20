@@ -1,23 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:recipebook/models/recipe.dart';
-import 'package:recipebook/utils/dbHelper.dart';
 
 class RecipeDetailScreen extends StatefulWidget {
+  final Recipe recipe;
+  RecipeDetailScreen(this.recipe);
+
   @override
-  _RecipeDetailScreenState createState() => _RecipeDetailScreenState();
+  _RecipeDetailScreenState createState() => _RecipeDetailScreenState(recipe);
 }
 
 class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
-  DatabaseHelper _databaseHelper = DatabaseHelper();
-  List<Recipe> allRecipes = List.empty();
-  void getRecipes() async {
-    var recipesFuture = _databaseHelper.getAllRecipes();
-    await recipesFuture.then((data) {
-      setState(() {
-        this.allRecipes = data;
-      });
-    });
-  }
+  Recipe recipe;
+  _RecipeDetailScreenState(this.recipe);
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +21,19 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text("Başlık : " + allRecipes[index].recipeTitle),
-            Text("Malzemeler : " + allRecipes[index].recipeMaterials),
-            Text("Açıklama : " + allRecipes[index].recipeDescription),
-          ],
+        child: Center(
+          child: Column(
+            children: [
+              Text(
+                "Başlık : " + recipe.recipeTitle,
+                style: TextStyle(fontSize: 25),
+              ),
+              Text("Malzemeler : " + recipe.recipeMaterials,
+                  style: TextStyle(fontSize: 25)),
+              Text("Açıklama : " + recipe.recipeDescription,
+                  style: TextStyle(fontSize: 25)),
+            ],
+          ),
         ),
       ),
     );

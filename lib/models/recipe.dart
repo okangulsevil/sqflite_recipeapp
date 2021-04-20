@@ -5,6 +5,7 @@ class Recipe {
   String recipeDescription;
 
   Recipe(this.recipeTitle, this.recipeMaterials, this.recipeDescription);
+
   Recipe.withId(this.recipeId, this.recipeTitle, this.recipeMaterials,
       this.recipeDescription);
 
@@ -22,5 +23,12 @@ class Recipe {
     this.recipeTitle = map["recipeTitle"];
     this.recipeMaterials = map["recipeMaterials"];
     this.recipeDescription = map["recipeDescription"];
+  }
+
+  Recipe.fromObject(dynamic o) {
+    this.recipeId = o["recipeId"];
+    this.recipeTitle = o["recipeTitle"];
+    this.recipeMaterials = o["recipeMaterials"];
+    this.recipeDescription = o["recipeDescription"];
   }
 }
