@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:recipebook/models/recipe.dart';
 import 'package:recipebook/utils/dbHelper.dart';
+import 'package:recipebook/widget/buildElevatedButton.dart';
+import 'package:recipebook/widget/buildTextFormField.dart';
 
 class RecipeAddScreen extends StatefulWidget {
   @override
@@ -38,41 +40,17 @@ class _RecipeAddScreenState extends State<RecipeAddScreen> {
               key: _formKey,
               child: Column(
                 children: [
-                  buildTextFormField(_titleController, "Tarif Başlığı", 1),
                   buildTextFormField(
-                      _materialsController, "Tarifin Malzemeleri", 4),
-                  buildTextFormField(
-                      _descriptionController, "Tarifin Yapılışı", 4),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.all(10),
-                      textStyle: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontStyle: FontStyle.italic),
-                    ),
-                    onPressed: _addRecipe,
-                    child: Text("Tarifi Ekle"),
-                  )
+                      _titleController, "Tarif Başlığı", "Başlık Gerekli", 1),
+                  buildTextFormField(_materialsController,
+                      "Tarifin Malzemeleri", "Malzeme Bilgisi Gerekli", 4),
+                  buildTextFormField(_descriptionController, "Tarifin Yapılışı",
+                      "Tarifin Yapılışı Gerekli", 4),
+                  buildElevatedButton("Tarif Ekle", _addRecipe),
                 ],
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget buildTextFormField(
-      TextEditingController txtController, String lblText, int txtMaxLines) {
-    return Padding(
-      padding: EdgeInsets.all(8.0),
-      child: TextFormField(
-        controller: txtController,
-        maxLines: txtMaxLines,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: lblText,
         ),
       ),
     );

@@ -39,7 +39,14 @@ class _MyHomePageState extends State<MyHomePage> {
       body: allRecipes.length <= 0
           ? Center(
               child: Text(
-                  "Henüz hiç yemek tarifin yok. \n Hemen bir tarif ekle !!!"),
+                "Henüz hiç yemek tarifin yok. \n Hemen bir tarif ekle !!!",
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
             )
           : Container(
               child: Column(
@@ -53,6 +60,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               onTap: () {
                                 navigateToDetail(this.allRecipes[position]);
                               },
+                              leading: Text(
+                                  allRecipes[position].recipeId.toString()),
                               title: Text(allRecipes[position].recipeTitle),
                               subtitle:
                                   Text(allRecipes[position].recipeDescription),
@@ -79,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _goToAddRecipe() {
-    Navigator.pushNamedAndRemoveUntil(context, "/recipe_add", (route) => false);
+    Navigator.pushNamedAndRemoveUntil(context, "/recipe_add", (route) => true);
   }
 
   void _deleteRecipe(int deletedRecipeId, int deletedRecipeIndex) async {
