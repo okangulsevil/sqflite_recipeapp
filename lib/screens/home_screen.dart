@@ -5,7 +5,7 @@ import 'package:recipebook/utils/dbHelper.dart';
 
 class MyHomePage extends StatefulWidget {
   final List<Recipe> recipes;
-  MyHomePage({Key key, @required this.recipes}) : super(key: key);
+  MyHomePage({Key key, this.recipes}) : super(key: key);
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
