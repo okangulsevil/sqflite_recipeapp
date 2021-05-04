@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipebook/models/recipe.dart';
-import 'package:recipebook/screens/recipe_detail_screen.dart';
+import 'package:recipebook/screens/detail_screen.dart';
 import 'package:recipebook/utils/dbHelper.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -79,16 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _goToAddRecipe,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
     );
-  }
-
-  void _goToAddRecipe() {
-    Navigator.pushNamedAndRemoveUntil(context, "/recipe_add", (route) => true);
   }
 
   void _deleteRecipe(int deletedRecipeId, int deletedRecipeIndex) async {
