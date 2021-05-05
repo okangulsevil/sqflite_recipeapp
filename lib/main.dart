@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Recipe Book App',
       theme: ThemeData(
+        dividerColor: Colors.black,
         primarySwatch: Colors.red,
       ),
       routes: routes,
