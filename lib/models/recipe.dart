@@ -4,10 +4,18 @@ class Recipe {
   String recipeMaterials;
   String recipeDescription;
 
-  Recipe(this.recipeTitle, this.recipeMaterials, this.recipeDescription);
+  Recipe(
+    this.recipeTitle,
+    this.recipeMaterials,
+    this.recipeDescription,
+  );
 
-  Recipe.withId(this.recipeId, this.recipeTitle, this.recipeMaterials,
-      this.recipeDescription);
+  Recipe.withId(
+    this.recipeId,
+    this.recipeTitle,
+    this.recipeMaterials,
+    this.recipeDescription,
+  );
 
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();

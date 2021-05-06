@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipebook/models/recipe.dart';
-import 'package:recipebook/screens/detail_screen.dart';
+import 'package:recipebook/screens/detail/detail_screen.dart';
 import 'package:recipebook/utils/dbHelper.dart';
 
 class MyHomePage extends StatefulWidget {

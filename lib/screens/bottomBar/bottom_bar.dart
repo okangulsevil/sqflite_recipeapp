@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:recipebook/consts/my_icons.dart';
-import 'package:recipebook/screens/home_screen.dart';
-import 'package:recipebook/screens/add_screen.dart';
-import 'package:recipebook/screens/profile_screen.dart';
+import 'package:recipebook/screens/home/home_screen.dart';
+import 'package:recipebook/screens/add/add_screen.dart';
+import 'package:recipebook/screens/profile/profile_screen.dart';
 
 class BottomBarScreen extends StatefulWidget {
   @override
