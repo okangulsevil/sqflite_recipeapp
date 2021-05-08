@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:recipebook/screens/profile/edit_profile_screen.dart';
 import 'package:recipebook/utils/user_preferences.dart';
+import 'package:recipebook/widget/buildAppBarWidget.dart';
+import 'package:recipebook/widget/buildProfileImageWidget.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -11,66 +14,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // leading: BackButton(),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          IconButton(
-              icon: Icon(
-                CupertinoIcons.moon_stars,
-                color: Colors.red,
-              ),
-              onPressed: () {}),
-        ],
-        title: Text(
-          "Profile",
-          style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
-        ),
-      ),
+      appBar: buildAppBar(context),
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: [
-          Center(
-            child: Stack(
-              children: [
-                ClipOval(
-                  child: Material(
-                    color: Colors.transparent,
-                    child: Ink.image(
-                      image: NetworkImage(UserPreferences.myUser.imagePath),
-                      fit: BoxFit.cover,
-                      width: 128,
-                      height: 128,
-                      child: InkWell(
-                        onTap: () {},
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: 4,
-                  child: ClipOval(
-                    child: Container(
-                      padding: EdgeInsets.all(3.0),
-                      color: Colors.white,
-                      child: ClipOval(
-                        child: Container(
-                          padding: EdgeInsets.all(8.0),
-                          color: Colors.blue,
-                          child: Icon(
-                            Icons.edit,
-                            color: Colors.white,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          ProfileImageWidget(
+            imagePath: UserPreferences.myUser.imagePath,
+            onClicked: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => EditProfileScreen()),
+              );
+            },
           ),
           const SizedBox(
             height: 24,
