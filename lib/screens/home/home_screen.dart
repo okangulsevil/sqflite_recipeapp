@@ -12,7 +12,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   DatabaseHelper _databaseHelper = DatabaseHelper();
-  List<Recipe> allRecipes;
+  List<Recipe> allRecipes = [];
   int clickedRecipeIDasd;
   void getRecipes() async {
     var recipesFuture = _databaseHelper.getAllRecipes();
@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
         title: Text("Yemek Tarifleri"),
       ),
-      body: allRecipes.length <= 0
+      body: allRecipes.length < 1
           ? Center(
               child: Text(
                 "Henüz hiç yemek tarifin yok. \n Hemen bir tarif ekle !!!",

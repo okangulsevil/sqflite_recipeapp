@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-AppBar buildAppBar(BuildContext context) {
+AppBar buildAppBar(BuildContext context, String titleText, bool leadingBool) {
   return AppBar(
-    // leading: BackButton(),
+    leading: leadingBool
+        ? BackButton(
+            color: Theme.of(context).primaryColor,
+          )
+        : null,
     backgroundColor: Colors.transparent,
     elevation: 0,
     actions: [
@@ -15,7 +19,7 @@ AppBar buildAppBar(BuildContext context) {
           onPressed: () {}),
     ],
     title: Text(
-      "Profile",
+      titleText,
       style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
     ),
   );

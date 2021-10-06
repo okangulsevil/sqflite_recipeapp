@@ -64,16 +64,16 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
               items: [
                 BottomNavigationBarItem(
                   icon: Icon(MyAppIcons.home),
-                  title: Text("Home"),
+                  label: "Home",
                 ),
                 BottomNavigationBarItem(
                   activeIcon: null,
                   icon: Icon(null),
-                  title: Text("Add Recipe"),
+                  label: "Add Recipe",
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(MyAppIcons.user),
-                  title: Text("User"),
+                  label: "User",
                 ),
               ],
             ),

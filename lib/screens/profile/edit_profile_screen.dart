@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recipebook/models/user.dart';
 import 'package:recipebook/utils/user_preferences.dart';
 import 'package:recipebook/widget/buildAppBarWidget.dart';
+import 'package:recipebook/widget/buildElevatedButton.dart';
 import 'package:recipebook/widget/buildProfileImageWidget.dart';
 import 'package:recipebook/widget/buildTextFieldWidget.dart';
 
@@ -15,7 +16,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context),
+      appBar: buildAppBar(context, "Edit Profile Page", true),
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 32),
         physics: BouncingScrollPhysics(),
@@ -50,6 +51,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             text: UserPreferences.myUser.about,
             onChanged: (about) {},
           ),
+          SizedBox(
+            height: 24,
+          ),
+          buildElevatedButton("Profil kaydet", null),
         ],
       ),
     );
